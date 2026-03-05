@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now – Our College</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        body {
+            background: #f0f4f8;
+            color: #1e2b3c;
+        }
+        header {
+            background: linear-gradient(135deg, #0a2f6c 0%, #1a4a9f 100%);
+            color: white;
+            padding: 1.2rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            box-shadow: 0 8px 20px rgba(0,20,40,0.2);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .logo-text {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: 0.2s;
+        }
+        nav a:hover {
+            border-bottom-color: #FFC107;
+        }
+        .page-header {
+            background: linear-gradient(rgba(10, 47, 108, 0.85), rgba(26, 74, 159, 0.7)), 
+                        url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+        .page-header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        .page-header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+        .form-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px rgba(10,47,108,0.15);
+            position: relative;
+            z-index: 1;
+        }
+        .form-section {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px dashed #d0ddeb;
+        }
+        .form-section h2 {
+            color: #0a2f6c;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            flex: 1 1 250px;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #0a2f6c;
+            font-size: 1rem;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e7ef;
+            border-radius: 16px;
+            font-size: 1rem;
+            transition: 0.2s;
+            background: white;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #FFC107;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(255,193,7,0.2);
+        }
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        .radio-group label, .checkbox-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 400;
+            color: #1e2b3c;
+        }
+        .file-upload {
+            border: 2px dashed #b0c4de;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 24px;
+            background: #f9fcff;
+            cursor: pointer;
+        }
+        .file-upload input { display: none; }
+        .file-upload label {
+            background: #FFC107;
+            color: #0a2f6c;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .submit-btn {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .submit-btn button {
+            background: #0a2f6c;
+            color: white;
+            border: none;
+            padding: 1.2rem 3.5rem;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 12px 25px rgba(10,47,108,0.4);
+        }
+        footer {
+            background: linear-gradient(135deg, #0a2f6c, #1a4a9f);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+        }
+        footer a { color: #FFC107; text-decoration: none; margin: 0 1rem; }
+
+        /* Gemini Stars CSS */
+        .star-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            opacity: 0;
+            transform: scale(0);
+            animation: star-pop 3s ease-in-out infinite;
+        }
+        @keyframes star-pop {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="download-removebg-preview (1).png" alt="WEBTECH College" class="logo-img">
+            <span class="logo-text">WEBTECH SCHOOL</span>
+        </div>
+       <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="application .html">Apply</a>
+    <a href="login.html">Login</a>
+    <a href="Dashboard.html" style="color: #FFC107;">Student Portal</a> 
+</nav>
+    </header>
+
+    <div class="page-header">
+        <h1>Application for Admission</h1>
+        <p>Join Our College – Start your journey today</p>
+    </div>
+
+    <div class="form-container">
+        <form action="#" method="post" enctype="multipart/form-data">
+            <div class="form-section">
+                <h2>📋 Personal Information</h2>
+                <div class="form-row">
+                    <div class="form-group"><label for="firstname">First Name *</label><input type="text" id="firstname" required></div>
+                    <div class="form-group"><label for="lastname">Last Name *</label><input type="text" id="lastname" required></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label for="dob">Date of Birth *</label><input type="date" id="dob" required></div>
+                    <div class="form-group">
+                        <label>Gender *</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gender" value="male" required> Male</label>
+                            <label><input type="radio" name="gender" value="female"> Female</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section">
+
+    <h2>🎓 Academic History</h2>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="highschool">Previous Secondary School *</label>
+            <input type="text" id="highschool" name="highschool" placeholder="e.g., Alliance High School" required>
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group">
+            <label for="kcse_index">Previous KCSE Index Number *</label>
+            <input type="text" id="kcse_index" name="kcse_index" placeholder="e.g., 12345678001" required>
+        </div>
+        <div class="form-group">
+            <label for="kcse_year">Year of KCSE *</label>
+            <input type="number" id="kcse_year" name="kcse_year" min="2000" max="2025" placeholder="YYYY" required>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="gradyear">Year of Graduation *</label>
+            <input type="number" id="gradyear" name="gradyear" min="1980" max="2030" required>
+        </div>
+        <div class="form-group">
+            <label for="gpa">Mean Grade / Points</label>
+            <input type="text" id="gpa" name="gpa" placeholder="e.g., A or 81 Points">
+        </div>
+    </div>
+</div>
+
+            <div class="form-section">
+                <h2>📘 Program Choice</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="program">Desired Program *</label>
+                        <select id="program" required>
+                            <option value="">-- Select --</option>
+                            <option value="cs">Computer Science</option>
+                            <option value="data">Data Analytics</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+    <label for="program">Desired Program *</label>
+    <select id="program" name="program" required>
+        <option value="">-- Select --</option>
+        <optgroup label="Technology & Engineering">
+            <option value="cs">Software Engineering & CS</option>
+            <option value="cyber">Cybersecurity & Network Defense</option>
+            <option value="ai">Artificial Intelligence & Robotics</option>
+            <option value="civil">Civil & Structural Engineering</option>
+        </optgroup>
+        <optgroup label="Business & Management">
+            <option value="business">International Business Admin</option>
+            <option value="finance">FinTech & Digital Accounting</option>
+            <option value="marketing">Digital Marketing & Analytics</option>
+        </optgroup>
+        <optgroup label="Health & Sciences">
+            <option value="nursing">Nursing & Health Sciences</option>
+            <option value="biotech">Biotechnology</option>
+            <option value="psych">Applied Psychology</option>
+        </optgroup>
+        <optgroup label="Creative Arts">
+            <option value="design">UX/UI & Graphic Design</option>
+            <option value="media">Multimedia & Film Production</option>
+        </optgroup>
+    </select>
+</div>
+
+       <div class="form-section">
+    <h2>📋 Required Checklists</h2>
+    <div class="checkbox-group" style="display: block;">
+        <label style="display: block; margin-bottom: 10px;">
+            <input type="checkbox" required> I have attached my official high school/college transcripts. *
+        </label>
+        <label style="display: block; margin-bottom: 10px;">
+            <input type="checkbox" required> I have uploaded a copy of my Government ID (Passport/Birth Certificate). *
+        </label>
+        <label style="display: block; margin-bottom: 10px;">
+            <input type="checkbox"> I have submitted my FAFSA/Financial Aid application (Optional).
+        </label>
+    </div>
+</div>
+
+            <div class="submit-btn">
+                <button type="submit">Submit Application</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Our College. All rights reserved.</p>
+        <div><a href="about.html">About</a> | <a href="login.html">Contact</a></div>
+    </footer>
+
+    <div class="star-container" id="starContainer"></div>
+    <script>
+        function createStar() {
+            const container = document.getElementById('starContainer');
+            const star = document.createElement('div');
+            const size = Math.random() * 10 + 5;
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const delay = Math.random() * 5;
+
+            star.classList.add('star');
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${x}%`;
+            star.style.top = `${y}%`;
+            star.style.animationDelay = `${delay}s`;
+            
+            const colors = ['#ffffff', '#e0f2ff', '#fff9e6'];
+            star.style.background = colors[Math.floor(Math.random() * colors.length)];
+            container.appendChild(star);
+            setTimeout(() => { star.remove(); }, 8000);
+        }
+        setInterval(createStar, 400);
+    </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard – WEBTECH SCHOOL</title>
+    <style>
+        :root {
+            --primary: #0a2f6c;
+            --secondary: #1a4a9f;
+            --accent: #FFC107;
+            --bg: #f4f7f9;
+            --text: #1e2b3c;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { display: flex; background: var(--bg); min-height: 100vh; color: var(--text); overflow-x: hidden; }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 260px;
+            background: var(--primary);
+            color: white;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            z-index: 100;
+        }
+        .sidebar h2 { font-size: 1.5rem; margin-bottom: 2.5rem; color: var(--accent); border-bottom: 2px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        
+        .nav-links { list-style: none; flex-grow: 1; }
+        .nav-links li { margin: 0.5rem 0; }
+        .nav-links a { 
+            color: white; text-decoration: none; display: block; padding: 0.8rem 1rem; 
+            border-radius: 8px; transition: 0.3s ease;
+        }
+        .nav-links a:hover, .nav-links a.active { background: var(--secondary); color: var(--accent); }
+
+        .logout-btn { 
+            margin-top: auto; 
+            color: #ff6b6b; 
+            text-decoration: none; 
+            font-weight: bold; 
+            text-align: center; 
+            padding: 15px; 
+            border-top: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .logout-btn:hover { color: white; background: rgba(255, 107, 107, 0.2); border-radius: 8px; }
+
+        /* Main Content Area */
+        .main-content { flex-grow: 1; padding: 2.5rem; position: relative; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
+        
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .stat-card {
+            background: white; padding: 1.5rem; border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--accent);
+        }
+        .stat-card h3 { color: var(--primary); font-size: 2.2rem; margin-bottom: 5px; }
+        .stat-card p { color: #666; font-weight: 500; }
+
+        /* Progress Section */
+        .content-card { 
+            background: white; padding: 2rem; border-radius: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 2rem;
+        }
+        .content-card h2 { margin-bottom: 1.5rem; color: var(--primary); }
+
+        .course-item { 
+            display: grid; grid-template-columns: 2fr 1fr 60px; align-items: center;
+            padding: 1.2rem 0; border-bottom: 1px solid #eee; 
+        }
+        .progress-bar { 
+            width: 100%; height: 8px; background: #e0e0e0; border-radius: 10px; overflow: hidden; 
+        }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--secondary), var(--accent)); }
+        
+        /* Course Grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .course-card {
+            background: #fff; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: 0.3s;
+            border: 1px solid #eee;
+        }
+        .course-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .course-card img { width: 100%; height: 130px; object-fit: cover; }
+        .course-card-content { padding: 1rem; }
+
+        /* Animation Layer */
+        .star-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
+        .star { position: absolute; background: white; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); opacity: 0; transform: scale(0); animation: star-pop 3s ease-in-out infinite; }
+        @keyframes star-pop { 0% { transform: scale(0); opacity: 0; } 50% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(0); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2>WEBTECH Portal</h2>
+        <ul class="nav-links">
+            <li><a href="Dashboard.html" class="active">🏠 Dashboard</a></li>
+            <li><a href="courses.html">📚 My Courses</a></li>
+            <li><a href="#">📅 Schedule</a></li>
+            <li><a href="#">📊 Grade Report</a></li>
+            <li><a href="#">📩 Messages</a></li>
+        </ul>
+        <a href="javascript:void(0)" class="logout-btn" onclick="logout()">Sign Out</a>
+    </aside>
+
+    <main class="main-content">
+        <div class="header">
+            <div>
+               <h1>Hello, <span id="userNameDisplay">Student</span>! 👋</h1>
+                <p>Track your progress and upcoming technical units.</p>
+            </div>
+            <div style="text-align: right;">
+                <strong style="display:block; color: var(--primary);">Term: Spring 2026</strong>
+                <span style="color: #666; font-size: 0.8rem;">Status: Active Enrollment</span>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card"><h3>3.85</h3><p>Current GPA</p></div>
+            <div class="stat-card"><h3>92%</h3><p>Attendance</p></div>
+            <div class="stat-card"><h3>6</h3><p>Units to Complete</p></div>
+        </div>
+
+        <div class="content-card">
+            <h2>Current Academic Progress</h2>
+            <div class="course-item">
+                <div><strong>Advanced Web Technologies</strong><br><small>Unit 4: Frameworks</small></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                <span style="text-align: right; font-weight: bold;">85%</span>
+            </div>
+            <div class="course-item">
+                <div><strong>Database Administration</strong><br><small>Unit 2: Optimization</small></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 45%;"></div></div>
+                <span style="text-align: right; font-weight: bold;">45%</span>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Recommended Skillsets</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&q=80" alt="Cyber">
+                    <div class="course-card-content">
+                        <h4>Cyber Security</h4>
+                        <p style="font-size: 0.8rem; color: #666;">Protecting digital assets.</p>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="Data">
+                    <div class="course-card-content">
+                        <h4>Data Analytics</h4>
+                        <p style="font-size: 0.8rem; color: #666;">Interpreting complex data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="star-container" id="starContainer"></div>
+
+    <script>
+        // 1. GATEKEEPER: Run immediately before the page fully loads
+        const loggedInUser = localStorage.getItem('studentName');
+        if (!loggedInUser) {
+            window.location.href = 'login1.html'; // Kick out if no name found
+        }
+
+        // 2. DISPLAY NAME
+        window.onload = function() {
+            document.getElementById('userNameDisplay').innerText = loggedInUser;
+        };
+
+        // 3. LOGOUT: Wipe memory and redirect
+        function logout() {
+            localStorage.clear();
+            window.location.href = 'login1.html';
+        }
+
+        // 4. DECORATIVE STARS
+        function createStar() {
+            const container = document.getElementById('starContainer');
+            if(!container) return;
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 8 + 4;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            const colors = ['#ffffff', '#e0f2ff', '#fff9e6'];
+            star.style.background = colors[Math.floor(Math.random() * colors.length)];
+            container.appendChild(star);
+            setTimeout(() => { star.remove(); }, 8000);
+        }
+        setInterval(createStar, 500);
+    </script>
+</body>
+</html>

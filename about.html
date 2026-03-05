@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us – Our College</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+        body {
+            background: #fafafa;
+            color: #1e2b3c;
+        }
+ /* Header Layout: Logo Left, Nav Right */
+header {
+    background: linear-gradient(135deg, #0a2f6c 0%, #1a4a9f 100%);
+    padding: 1.2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Pushes Nav to the right */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 8px 20px rgba(0,20,40,0.2);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-img {
+    width: 70px; /* Restored to original index size */
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo-text {
+    font-size: 2.2rem; /* Restored to index.html size */
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+nav {
+    display: flex;
+    gap: 2rem; /* Increased spacing */
+}
+
+nav a {
+    color: white; /* Matching other pages */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem; /* Increased size for better readability */
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    color: #FFC107;
+    border-bottom: 2px solid #FFC107;
+}
+
+/* Attractive "About Our College" Header */
+.page-header {
+    background: linear-gradient(rgba(10, 47, 108, 0.8), rgba(10, 47, 108, 0.8)), 
+                url('https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    padding: 6rem 2rem;
+    text-align: center;
+    color: white;
+}
+
+.page-header h1 {
+    font-size: 3.5rem; /* Large and Attractive */
+    margin-bottom: 1rem;
+    text-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+}
+
+.page-header p {
+    font-size: 1.5rem;
+    color: #FFC107; /* Branded accent color */
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+        section {
+            max-width: 1300px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 15px 30px rgba(0,20,50,0.1);
+            flex: 1 1 280px;
+            transition: all 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 45px rgba(10,47,108,0.2);
+        }
+        .card h2 {
+            color: #0a2f6c;
+            margin-bottom: 1rem;
+            font-size: 1.9rem;
+        }
+        .facts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+        .fact-item {
+            text-align: center;
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 30px rgba(0,20,50,0.1);
+            flex: 1 1 160px;
+            border-bottom: 5px solid #FFC107;
+        }
+        .fact-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #0a2f6c;
+            line-height: 1.2;
+        }
+        .mission {
+            background: linear-gradient(145deg, #0a2f6c, #1a4a9f);
+            color: white;
+            padding: 4rem;
+            border-radius: 40px;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 30px 40px rgba(10,47,108,0.3);
+        }
+        .mission h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .mission p {
+            font-size: 1.4rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .leaders {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+        .leader {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem 1.5rem 1.5rem;
+            box-shadow: 0 15px 30px rgba(0,20,50,0.1);
+            text-align: center;
+            width: 240px;
+            transition: 0.2s;
+        }
+        .leader:hover {
+            transform: scale(1.03);
+        }
+        .leader img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #FFC107;
+            margin-bottom: 1.2rem;
+        }
+        .leader h3 {
+            color: #0a2f6c;
+            font-size: 1.5rem;
+        }
+        footer {
+            background: linear-gradient(135deg, #0a2f6c, #1a4a9f);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 4rem;
+            font-size: 1.1rem;
+        }
+        footer a {
+            color: #FFC107;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        /* Student Activity Gallery Styling */
+.life-at-webtech {
+    padding: 5rem 2rem;
+    background: #ffffff;
+}
+
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 300px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-10px);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.gallery-card:hover img {
+    transform: scale(1.1);
+}
+
+.activity-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(10, 47, 108, 0.9));
+    color: white;
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+
+.gallery-card:hover .activity-overlay {
+    transform: translateY(0);
+}
+
+.activity-overlay h3 {
+    font-size: 1.2rem;
+    color: #FFC107;
+    margin-bottom: 5px;
+}
+/* Student Success Section Styling */
+.success-stories {
+    padding: 5rem 2rem;
+    background: #f4f7fa; /* Light grey to make the white cards pop */
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    border-bottom: 4px solid #FFC107; /* Branded gold accent */
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+}
+
+.student-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.student-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #0a2f6c;
+}
+
+.student-name h4 {
+    color: #0a2f6c;
+    margin: 0;
+}
+
+.student-name span {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.quote {
+    font-style: italic;
+    color: #444;
+    line-height: 1.6;
+}
+
+.stars {
+    color: #FFC107;
+    margin-bottom: 10px;
+}
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #FFC107;
+    color: #0a2f6c;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1001;
+    transition: 0.3s;
+}
+#backToTop:hover { transform: scale(1.1); background: #0a2f6c; color: #FFC107; }
+    </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <img src="download-removebg-preview (1).png" alt="WEBTECH College" class="logo-img">
+        <span class="logo-text">WEBTECH SCHOOL</span>
+    </div>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="application .html">Apply</a>
+        <a href="login.html">Login</a>
+        <a href="Dashboard.html" style="color: #FFC107; border: 1px solid #FFC107; padding: 5px 15px; border-radius: 20px;">Student Portal</a> 
+        <a href="#" id="backToTop">↑</a>
+    </nav>
+</header>
+
+<div class="page-header">
+    <h1>About Our College</h1>
+    <p>Tradition · Innovation · Excellence</p>
+</div>
+
+<section class="life-at-webtech">
+    <h2 style="text-align: center; color: #0a2f6c; font-size: 2.5rem; margin-bottom: 3rem;">Life at WEBTECH SCHOOL</h2>
+    
+    <div class="gallery-container">
+        <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Learning Activity">
+            <div class="activity-overlay">
+                <h3>Hands-on Learning</h3>
+                <p>Students collaborating on a full-stack web project in our innovation lab.</p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=80" alt="Sports and Co-curricular">
+            <div class="activity-overlay">
+                <h3>Beyond the Classroom</h3>
+                <p>Our students competing in the inter-university outdoor sports challenge.</p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Student Social Life">
+            <div class="activity-overlay">
+                <h3>Joy & Community</h3>
+                <p>Sharing a laugh during the lunch break—where great ideas often start!</p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Career Success">
+            <div class="activity-overlay">
+                <h3>Future Leaders</h3>
+                <p>A group of final-year students preparing for their industry internship.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section>
+        <div class="cards">
+            <div class="card">
+                <h2>Overview</h2>
+                <p>We are proud to offer a rich academic experience in a nurturing, supportive environment. Founded in 1990, we have grown into a leading institution with over 10,000 students.</p>
+            </div>
+            <div class="card">
+                <h2>Achievements & Rankings</h2>
+                <p>#1 in Student Satisfaction, Top 10 for Research Output, and a 95% graduate employment rate within six months.</p>
+            </div>
+            <div class="card">
+                <h2>Scholarship Programs</h2>
+                <p>Over $5M awarded annually. Merit‑based, need‑based, and international scholarships available.</p>
+            </div>
+        </div>
+
+        <div class="facts">
+            <div class="fact-item"><span class="fact-number">10k+</span><br>Students</div>
+            <div class="fact-item"><span class="fact-number">500+</span><br>Faculty</div>
+            <div class="fact-item"><span class="fact-number">50+</span><br>Countries</div>
+            <div class="fact-item"><span class="fact-number">120+</span><br>Programs</div>
+        </div>
+
+        <div class="mission">
+            <h2>Our Mission</h2>
+            <p>To cultivate curious minds, foster inclusive communities, and empower graduates to solve the world’s most pressing challenges.</p>
+        </div>
+
+        <section style="background: #0a2f6c; color: white; padding: 4rem 2rem; text-align: center;">
+    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; max-width: 1200px; margin: 0 auto;">
+        <div>
+            <h2 style="font-size: 3rem; color: #FFC107;">5,000+</h2>
+            <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Graduated Students</p>
+        </div>
+        <div>
+            <h2 style="font-size: 3rem; color: #FFC107;">45+</h2>
+            <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Expert Faculty</p>
+        </div>
+        <div>
+            <h2 style="font-size: 3rem; color: #FFC107;">12</h2>
+            <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Tech Hubs & Labs</p>
+        </div>
+        <div>
+            <h2 style="font-size: 3rem; color: #FFC107;">100%</h2>
+            <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Practical Learning</p>
+        </div>
+    </div>
+</section>
+
+       <section class="success-stories">
+    <h2 style="text-align: center; color: #0a2f6c; font-size: 2.5rem; margin-bottom: 1rem;">Student Success Stories</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 4rem;">See what our graduates have to say about their journey at WEBTECH.</p>
+
+    <div class="testimonial-grid">
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">"WEBTECH SCHOOL didn't just teach me how to code; they taught me how to think like an engineer. Within 3 months of graduating, I landed a role at a top fintech firm."</p>
+            <hr style="margin: 1.5rem 0; opacity: 0.1;">
+            <div class="student-info">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=100&q=80" alt="Alumni" class="student-img">
+                <div class="student-name">
+                    <h4>Sarah Wanjiku</h4>
+                    <span>Software Engineer, Safaricom</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">"The hands-on projects and the supportive community made all the difference. I loved the balance between serious coding and the Friday social events!"</p>
+            <hr style="margin: 1.5rem 0; opacity: 0.1;">
+            <div class="student-info">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" alt="Alumni" class="student-img">
+                <div class="student-name">
+                    <h4>Brian Otieno</h4>
+                    <span>UX Designer, Google Africa</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">"Transitioning from high school was easy thanks to the mentors here. The co-curricular activities kept me active while I mastered Data Science."</p>
+            <hr style="margin: 1.5rem 0; opacity: 0.1;">
+            <div class="student-info">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=100&q=80" alt="Alumni" class="student-img">
+                <div class="student-name">
+                    <h4>Amara Okafor</h4>
+                    <span>Data Analyst, Microsoft</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Our College. All rights reserved.</p>
+        <div style="margin-top:1rem;">
+            <a href="login.html">Contact Us</a>
+        </div>
+    </footer>
+    <style>
+    .star-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Allows clicking through the stars */
+        z-index: 9999;
+        overflow: hidden;
+    }
+
+    .star {
+        position: absolute;
+        background: white;
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        opacity: 0;
+        transform: scale(0);
+        animation: star-pop 3s ease-in-out infinite;
+    }
+
+    @keyframes star-pop {
+        0% { transform: scale(0); opacity: 0; }
+        50% { transform: scale(1); opacity: 0.7; }
+        100% { transform: scale(0); opacity: 0; }
+    }
+</style>
+
+<div class="star-container" id="starContainer"></div>
+
+<script>
+    function createStar() {
+        const container = document.getElementById('starContainer');
+        const star = document.createElement('div');
+        
+        // Randomize size between 5px and 15px
+        const size = Math.random() * 10 + 5;
+        
+        // Randomize position
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        
+        // Randomize animation delay so they don't pop all at once
+        const delay = Math.random() * 5;
+
+        star.classList.add('star');
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `${x}%`;
+        star.style.top = `${y}%`;
+        star.style.animationDelay = `${delay}s`;
+        
+        // Slightly different colors like Gemini (white, light blue, soft gold)
+        const colors = ['#ffffff', '#e0f2ff', '#fff9e6'];
+        star.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+        container.appendChild(star);
+
+        // Remove star after animation to keep the DOM clean
+        setTimeout(() => {
+            star.remove();
+        }, 8000);
+    }
+
+    // Create a new star every 400ms
+    setInterval(createStar, 400);
+</script>
+</body>
+</html>

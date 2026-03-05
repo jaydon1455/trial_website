@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Login – Our College</title>
+    <style>
+        /* CSS Reset and Variables */
+        :root {
+            --primary: #0a2f6c;
+            --secondary: #1a4a9f;
+            --accent: #FFC107;
+            --white: #ffffff;
+            --gray: #666;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body { background: #fafafa; color: #1e2b3c; overflow-x: hidden; }
+
+        /* Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white; padding: 1rem 3rem;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 8px 20px rgba(0,20,40,0.2);
+        }
+
+        .logo { display: flex; align-items: center; gap: 15px; }
+        .logo-text { font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
+
+        nav a {
+            color: white; text-decoration: none; margin-left: 2rem;
+            font-weight: 600; transition: 0.2s; border-bottom: 2px solid transparent;
+        }
+        nav a:hover { border-bottom-color: var(--accent); }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(10, 47, 108, 0.8), rgba(26, 74, 159, 0.6)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80') center/cover;
+            padding: 4rem 2rem; text-align: center; color: white;
+        }
+
+        /* Auth Card */
+        .auth-wrapper { display: flex; justify-content: center; align-items: center; padding: 40px 20px; }
+        .auth-card {
+            background: white; width: 100%; max-width: 450px;
+            border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            overflow: hidden; border-top: 6px solid var(--primary);
+        }
+
+        .auth-tabs { display: flex; background: #f4f7fa; cursor: pointer; }
+        .tab { flex: 1; padding: 20px; text-align: center; font-weight: 700; color: #888; transition: 0.3s; }
+        .tab.active { background: white; color: var(--primary); border-bottom: 3px solid var(--accent); }
+
+        .auth-content { padding: 40px; }
+        .auth-form { display: none; }
+        .auth-form.active { display: block; }
+
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+        .input-group input, .input-group select {
+            width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; transition: 0.3s;
+        }
+        .input-group input:focus { border-color: var(--accent); outline: none; }
+
+        .btn-primary {
+            width: 100%; padding: 15px; background: var(--primary); color: white;
+            border: none; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .btn-primary:hover { background: var(--accent); color: var(--primary); }
+
+        /* Star Animation */
+        .star-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; }
+        .star { position: absolute; background: white; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); animation: star-pop 3s ease-in-out infinite; }
+        @keyframes star-pop { 0% { transform: scale(0); opacity: 0; } 50% { transform: scale(1); opacity: 0.7; } 100% { transform: scale(0); opacity: 0; } }
+
+        footer { background: var(--primary); color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span class="logo-text">WEBTECH COLLEGE</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="login.html" style="color: var(--accent);">Portal</a>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>Student Portal</h1>
+        <p>Current students can access their dashboard below.</p>
+    </div>
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <div id="loginTab" class="tab active" onclick="switchTab('login')">Existing Student</div>
+                <div id="signupTab" class="tab" onclick="switchTab('signup')">New Student</div>
+            </div>
+
+            <div class="auth-content">
+                <form id="login-form" class="auth-form active" onsubmit="handleLogin(event)">
+                    <h3 style="color: #0a2f6c; margin-bottom: 10px;">Welcome Back</h3>
+                    <div class="input-group">
+                        <label>Registration Name / ID</label>
+                        <input type="text" id="userid" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Sign Into Dashboard</button>
+                </form>
+
+                <form id="signup-form" class="auth-form" onsubmit="handleSignup(event)">
+                    <h3 style="color: #0a2f6c; margin-bottom: 10px;">Enrolment</h3>
+                    <div class="input-group">
+                        <label>First Name</label>
+                        <input type="text" id="fname" placeholder="First Name" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Course</label>
+                        <select id="course" required>
+                            <option value="">Select path...</option>
+                            <option>Software Engineering</option>
+                            <option>Cyber Security</option>
+                            <option>Web Development</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Create Password</label>
+                        <input type="password" id="newPass" placeholder="Min. 8 characters" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="background: var(--accent); color: var(--primary);">Generate ID & Enter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="star-container" id="starContainer"></div>
+
+    <script>
+        // 1. Tab Switching Logic
+        function switchTab(type) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+
+            if (type === 'login') {
+                document.getElementById('loginTab').classList.add('active');
+                document.getElementById('login-form').classList.add('active');
+            } else {
+                document.getElementById('signupTab').classList.add('active');
+                document.getElementById('signup-form').classList.add('active');
+            }
+        }
+
+        // 2. Login Logic (With "Wrong Password" handling)
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const userId = document.getElementById('userid').value;
+            const pass = document.getElementById('password').value;
+
+            // Simple Debug: Let's assume the correct password is "admin123" 
+            // OR if it's the first time, let any password work.
+            if (pass.length < 4) {
+                alert("Error: Password too short.");
+            } else if (pass === "wrong") { 
+                alert("Access Denied: Incorrect Password!");
+            } else {
+                const displayName = userId.charAt(0).toUpperCase() + userId.slice(1);
+                localStorage.setItem('studentName', displayName);
+                window.location.href = "dashboard.html";
+            }
+        }
+
+        // 3. Signup Logic
+        function handleSignup(event) {
+            event.preventDefault();
+            const fname = document.getElementById('fname').value;
+            localStorage.setItem('studentName', fname);
+            window.location.href = "dashboard.html";
+        }
+
+        // 4. Star Animation
+        function createStar() {
+            const container = document.getElementById('starContainer');
+            const star = document.createElement('div');
+            const size = Math.random() * 10 + 5;
+            star.classList.add('star');
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            container.appendChild(star);
+            setTimeout(() => star.remove(), 6000);
+        }
+        setInterval(createStar, 500);
+    </script>
+</body>
+</html>
